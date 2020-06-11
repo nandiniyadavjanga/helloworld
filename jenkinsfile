@@ -1,5 +1,6 @@
 pipeline { environment {
     registry = "nandiniyadavjanga/dockerjenkins"
+    registryCredential = 'dockerhub'
   }
     agent any
     tools { 
