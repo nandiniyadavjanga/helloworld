@@ -22,5 +22,10 @@ pipeline { environment {
                 sh 'mvn clean install'
             }
         }
+        stage ('DockerBuild') {
+            steps {
+                sh 'mvn clean install'
+            }
+        }
     }
 }
