@@ -1,40 +1,23 @@
 pipeline {
     agent any
-    stages {
-    stage('Build') {
-           steps {
-            dir ('myproject') {
-                 
-                sh 'mvn clean install test'
-            }   
-        } 
-       
-   }
-   stage('Archive') {
-         steps {
-           dir ('myproject/target') {
-           archive '*.jar'
-         }  
-      } 
-      
-   }  
+    tools { 
+        maven 'Maven 3.3.9' 
+        jdk 'jdk8' 
     }
-    post {
-        always {
-            echo 'I have finished and deleting workspace'
-            deleteDir() 
+    stages {
+        stage ('Initialize') {
+            steps {
+                sh '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"
+                ''' 
+            }
         }
-        success {
-            echo 'Job succeeeded!'
-        }
-        unstable {
-            echo 'I am unstable :/'
-        }
-        failure {
-            echo 'I failed :('
-        }
-        changed {
-            echo 'Things were different before...'
+
+        stage ('Build') {
+            steps {
+                sh 'mvn clean install'
+            }
         }
     }
 }
