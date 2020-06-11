@@ -1,7 +1,4 @@
-pipeline { environment {
-    registry = "nandiniyadavjanga/dockerjenkins"
-    registryCredential = 'dockerhub'
-  }
+pipeline { 
     agent any
     tools { 
         maven 'MAVEN_HOME' 
@@ -24,7 +21,7 @@ pipeline { environment {
         }
         stage ('DockerBuild') {
             steps {
-                sh 'docker build .'
+                sh 'docker -v'
             }
         }
     }
