@@ -2,8 +2,7 @@ pipeline {
     agent any
     tools { 
         maven 'MAVEN_HOME' 
-        jdk 'JAVA_HOME' 
-        DockerTool 'DOCKER' 
+        jdk 'JAVA_HOME'  
     }
     stages {
         stage ('Initialize') {
